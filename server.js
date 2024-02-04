@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use("/", routes);
 
 app.get('/', async (req, res) => {
-    console.log('running........')
+    console.log('running...........')
     res.send('running')
 })
 
