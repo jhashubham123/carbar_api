@@ -15,21 +15,7 @@ authControllerObj.registerUser = async function (req, res) {
 
     let data = req.body;
 
-    if (!data.firstName) {
-        returnData.message = "firstName field is required";
-        helper.responseHandler(res, returnData);
-        return;
-    }
-    if (!data.lastName) {
-        returnData.message = "lastName field is required";
-        helper.responseHandler(res, returnData);
-        return;
-    }
-    if (!data.phone) {
-        returnData.message = "phone field is required";
-        helper.responseHandler(res, returnData);
-        return;
-    }
+
     if (!data.email) {
         returnData.message = "email field is required";
         helper.responseHandler(res, returnData);
@@ -40,7 +26,7 @@ authControllerObj.registerUser = async function (req, res) {
         helper.responseHandler(res, returnData);
         return;
     }
-    let returnDataFromModel = await authModel.sendOtp(data);
+    let returnDataFromModel = await authModel.sendRegistrationOtp(data);
     helper.responseHandler(res, returnDataFromModel);
 }
 

@@ -8,7 +8,7 @@ let authModelObj = {};
 
 
 
-authModelObj.sendOtp = async function (data) {
+authModelObj.sendRegistrationOtp = async function (data) {
     let returnData = {
         status: true,
         statusCode: 1,
@@ -32,8 +32,8 @@ authModelObj.sendOtp = async function (data) {
             }
         } else {
             otp = await mobileOtpHandle.generateOtp(data.email);
-            query = `INSERT INTO users(u_first_name,u_last_name,u_phone,u_email,u_password,otp)VALUES($1,$2,$3,$4,$5,$6)`;
-            insertData = pool.query(query, [data.firstName, data.lastName, data.phone, data.email, data.password, otp]);
+            query = `INSERT INTO users(u_email,u_password,otp)VALUES($1,$2,$3)`;
+            insertData = pool.query(query, [data.email, data.password, otp]);
             returnData.message = "OTP sent successfully";
             returnData.payload = {
                 OTP: otp
